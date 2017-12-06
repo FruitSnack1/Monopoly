@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     Player *player = new Player();
     QPixmap pim("../client/backgroung.jpg");
     scene.addPixmap(pim.scaled(900, 900));
-    player->setPos(500,500);
+    player->setPosition(0);
     scene.addItem(player);
     this->setCentralWidget(view);
     view->setScene(&scene);

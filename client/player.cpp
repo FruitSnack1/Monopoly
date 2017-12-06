@@ -9,7 +9,7 @@ Player::Player()
 
 QRectF Player::boundingRect() const
 {
-    return QRect(0,0, 40,40);
+    return QRect(0,0, 30,30);
 }
 
 QPainterPath Player::shape() const
@@ -43,6 +43,14 @@ int Player::getPosition() const
 void Player::setPosition(int value)
 {
     position = value;
+    int x;
+    int y;
+    if(value == 0){
+        x = 850 - boundingRect().width()/2;
+        y = 850 - boundingRect().height()/2;
+    }
+    this->setPos(x,y);
+
 }
 
 int Player::getMoney() const
