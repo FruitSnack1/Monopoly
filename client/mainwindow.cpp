@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "player.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -8,8 +8,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     QMainWindow::showMaximized();
     View *view = new View();
-    QPixmap pim("../Monopoly/backgroung.jpg");
+    Player *player = new Player();
+    QPixmap pim("../client/backgroung.jpg");
     scene.addPixmap(pim.scaled(900, 900));
+    player->setPos(500,500);
+    scene.addItem(player);
     this->setCentralWidget(view);
     view->setScene(&scene);
 }
