@@ -45,9 +45,18 @@ void Player::setPosition(int value)
     position = value;
     int x;
     int y;
-    if(value == 0){
-        x = 850 - boundingRect().width()/2;
-        y = 850 - boundingRect().height()/2;
+    int list[11] = {840, 745, 672, 599, 524, 451, 376, 303, 229, 154, 60};
+    if(value > 0 && value < 11){
+        x = list[value] - boundingRect().width()/2;
+        y = 840 - boundingRect().height()/2;
+    }
+    if(value > 10 && value < 21){
+        x = 60 - boundingRect().width()/2;
+        y = list[value-10] - boundingRect().height()/2;
+    }
+    if(value > 20 && value < 31){
+        x = list[value];
+        y = 60 - boundingRect().height()/2;
     }
     this->setPos(x,y);
 
