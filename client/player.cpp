@@ -55,11 +55,14 @@ void Player::setPosition(int value)
         y = list[value-10] - boundingRect().height()/2;
     }
     if(value > 20 && value < 31){
-        x = list[value];
+        x = list[30-value] - boundingRect().width()/2;
         y = 60 - boundingRect().height()/2;
     }
+    if(value > 30 && value < 40){
+        x = 840 - boundingRect().width()/2;
+        y = list[40-value] - boundingRect().height()/2;
+    }
     this->setPos(x,y);
-
 }
 
 int Player::getMoney() const
