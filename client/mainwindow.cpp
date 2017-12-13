@@ -7,14 +7,14 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     QMainWindow::showMaximized();
-    View *view = new View();
     Player *player = new Player();
     QPixmap pim("../client/backgroung.jpg");
     scene.addPixmap(pim.scaled(900, 900));
     player->setPosition(20);
     scene.addItem(player);
-    this->setCentralWidget(view);
-    view->setScene(&scene);
+    ui->graphicsView->setScene(&scene);
+    ui->graphicsView->setFixedSize(904,904);
+    ui->graphicsView->setGeometry(10,10,10,10);
 }
 
 MainWindow::~MainWindow()
