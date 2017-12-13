@@ -7,7 +7,7 @@
 class Player : public QGraphicsItem
 {
 public:
-    Player();
+    Player(const int index);
 
     QString getName() const;
     void setName(const QString &value);
@@ -27,11 +27,15 @@ public:
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
+    int getIndex() const;
+    void setIndex(int value);
+
 protected:
     QString name;
     int position;
     int money;
     QList<int > lands;
+    int index;
 };
 
 #endif // PLAYER_H

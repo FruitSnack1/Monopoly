@@ -2,14 +2,15 @@
 #include <QPainter>
 #include <QJsonArray>
 
-Player::Player()
+Player::Player(const int index)
 {
-
+   setIndex(index);
+   setPosition(0);
 }
 
 QRectF Player::boundingRect() const
 {
-    return QRect(0,0, 30,30);
+    return QRect(0,0, 40,40);
 }
 
 QPainterPath Player::shape() const
@@ -21,8 +22,20 @@ QPainterPath Player::shape() const
 
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::red);
-    painter->drawRect(boundingRect());
+    QImage img("../client/players.png");
+    img = img.scaled(boundingRect().width()*4,boundingRect().height());
+    img =img.copy(QRect(boundingRect().width()*index,0,boundingRect().width(), boundingRect().height()));
+    painter->drawImage(QPoint(0,0),img);
+}
+
+int Player::getIndex() const
+{
+    return index;
+}
+
+void Player::setIndex(int value)
+{
+    index = value;
 }
 
 QString Player::getName() const
@@ -46,6 +59,10 @@ void Player::setPosition(int value)
     int x;
     int y;
     int list[11] = {840, 745, 672, 599, 524, 451, 376, 303, 229, 154, 60};
+    if(value == 0){
+        x = 840 - boundingRect().width()/2;
+        y = 840 - boundingRect().height()/2;
+    }
     if(value > 0 && value < 11){
         x = list[value] - boundingRect().width()/2;
         y = 840 - boundingRect().height()/2;
