@@ -2,13 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QGraphicsScene>
-#include <QGraphicsView>
-#include <QSplitter>
-#include "view.h"
+#include <QTcpServer>
 #include <QTcpSocket>
-#include "player.h"
-
+#include "server.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,19 +16,21 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    void gotMessage();
-    void connectioncreated();
     ~MainWindow();
-
-private slots:
+    void onMessageWrite();
+    //server ser;
+private  slots:
+    void newClient();
+    void isReady();
     void on_pushButton_clicked();
+   // void giveNumber(server *sender);
 
 private:
     Ui::MainWindow *ui;
-    QGraphicsScene scene;
-    View *view;
-    QTcpSocket *spojeni;
-    Player *player;
+    QTcpServer tcpserver;
+    int ClientCount=2;
+    int ClientATM=0;
+    QList<QTcpSocket *>clients;
 };
 
 #endif // MAINWINDOW_H

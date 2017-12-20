@@ -56,6 +56,7 @@ int Player::getPosition() const
 void Player::setPosition(int value)
 {
     position = value;
+
     int x;
     int y;
     int list[11] = {840, 745, 672, 599, 524, 451, 376, 303, 229, 154, 60};

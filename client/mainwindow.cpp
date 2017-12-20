@@ -10,10 +10,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     QMainWindow::showMaximized();
-    Player *player = new Player(0);
+    player = new Player(0);
     QPixmap pim("../client/backgroung.jpg");
     scene.addPixmap(pim.scaled(900, 900));
-    player->setPosition(20);
+    player->setPosition(0);
     scene.addItem(player);
     ui->graphicsView->setScene(&scene);
     ui->graphicsView->setFixedSize(904,904);
@@ -43,6 +43,7 @@ void MainWindow::gotMessage()
     stream >> slovo;
     qDebug() << slovo;
     ui->textBrowser->setText(ui->textBrowser->toPlainText()+slovo+"\n");
+    player->setPosition((player->getPosition() + slovo.toInt())%40);
 }
 
 
